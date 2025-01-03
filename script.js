@@ -34,8 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('#calendar button').forEach(btn => btn.classList.remove('selected'));
             button.classList.add('selected');
             selectedDate = `${year}-${month + 1}-${day}`;
-            //selectedDate = new Date(year, month, day);
-            //selectedDate = formatDate(selectedDate);
         });
         calendar.appendChild(button);
     }
@@ -46,17 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tg.MainButton.onClick(() => {
         if (selectedDate) {
-            tg.sendData(JSON.stringify({}));  // Отправляем выбранную дату
+            tg.sendData(JSON.stringify({ selectedDate }));  // Отправляем выбранную дату
         } else {
             alert('Пожалуйста, выберите дату!');
             tg.sendData(JSON.stringify({ selectedDate: null }));  // Отправляем, что дата не выбрана
         }
     });
-
-    // Функция для форматирования даты в ДД.ММ.ГГГГ
-    function formatDate(date) {
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0'); // Месяцы от 0 до 11, поэтому прибавляем 1
-        const year = date.getFullYear();
-        return `${day}.${month}.${year}`;
 });
