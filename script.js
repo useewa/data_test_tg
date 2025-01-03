@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (Telegram.WebApp) {
-            Telegram.WebApp.sendData(selectedDate);
+            Telegram.WebApp.sendData(selectedDate); // Отправляем выбранную дату
         } else {
             alert(`Выбрана дата: ${selectedDate}`);
         }
