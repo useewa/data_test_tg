@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Снять выделение с других кнопок
             document.querySelectorAll('#calendar button').forEach(btn => btn.classList.remove('selected'));
             button.classList.add('selected');
-            selectedDate = `${year}-${month + 1}-${day}`;
+            selectedDate = `${day}-${month + 1}-${year}`;
         });
         calendar.appendChild(button);
     }
