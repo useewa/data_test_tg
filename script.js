@@ -4,6 +4,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const tg = window.Telegram.WebApp;
     let selectedDate = null;
 
+    // Получаем данные о пользователе из Telegram WebApp
+    const user = tg.initDataUnsafe.user;  // Данные пользователя (id, username, имя, фамилия и т.д.)
+    const userInfo = document.getElementById('userInfo'); // Элемент, в который будет выведена информация о пользователе
+    const entryTime = new Date();  // Время входа в приложение
+
+    // Выводим информацию о пользователе в элемент с id "userInfo"
+    userInfo.innerHTML = `
+        <p><strong>Привет, ${user.first_name}!</strong></p>
+        <p>Ваш username: @${user.username}</p>
+        <p>Вы вошли в приложение: ${entryTime.toLocaleString()}</p>
+    `;
+
     // Генерация календаря для текущего месяца
     const today = new Date();
     const year = today.getFullYear();
