@@ -33,8 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Снять выделение с других кнопок
             document.querySelectorAll('#calendar button').forEach(btn => btn.classList.remove('selected'));
             button.classList.add('selected');
-            selectedDate = new Date(year, month, day);
-            selectedDate = formatDate(selectedDate);
+            selectedDate = `${year}-${month + 1}-${day}`;
+            //selectedDate = new Date(year, month, day);
+            //selectedDate = formatDate(selectedDate);
         });
         calendar.appendChild(button);
     }
