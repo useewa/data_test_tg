@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const calendar = document.getElementById('calendar');
     const submitBtn = document.getElementById('submitBtn');
+    const tg = window.Telegram.WebApp;
     let selectedDate = null;
 
     // Генерация календаря для текущего месяца
@@ -28,10 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        if (Telegram.WebApp) {
-            Telegram.WebApp.sendData(selectedDate); // Отправляем выбранную дату
-        } else {
-            alert(`Выбрана дата: ${selectedDate}`);
-        }
+        // Отправляем выбранную дату обратно в Telegram
+        tg.sendData(selectedDate);
     });
 });
