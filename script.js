@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Отправляем выбранную дату обратно в Telegram
-        tg.sendData(selectedDate);
+        tg.sendData(JSON.stringify({ data: selectedDate }));
+
     });
 });
