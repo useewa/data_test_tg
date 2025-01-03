@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const calendar = document.getElementById('calendar');
-    const submitBtn = document.getElementById('submitBtn');
     const tg = window.Telegram.WebApp;
-    tg.MainButton.text;
     let selectedDate = null;
 
     // Получаем данные о пользователе из Telegram WebApp
@@ -35,19 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
         calendar.appendChild(button);
     }
 
-    // Отправка выбранной даты в Telegram по кнопке submit
-    submitBtn.addEventListener('click', () => {
-        if (!selectedDate) {
-            alert('Пожалуйста, выберите дату!');
-            return;
-        }
-
-        // Отправляем выбранную дату обратно в Telegram
-        tg.sendData(JSON.stringify({ data: selectedDate }));
-    });
-
     // Слушаем клик по основной кнопке Telegram
-    tg.onEvent('mainButtonClicked', () => {
+    tg.MainButton.text = "Отправить выбранную дату";  // Устанавливаем текст на кнопке
+    tg.MainButton.show();  // Показываем кнопку, если она скрыта
+
+    tg.MainButton.onClick(() => {
         if (selectedDate) {
             tg.sendData(JSON.stringify({ data: selectedDate }));  // Отправляем выбранную дату
         } else {
