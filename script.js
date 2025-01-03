@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedDate = null;
 
     // Получаем данные о пользователе из Telegram WebApp
-    const user = tg.initDataUnsafe.user;  // Данные пользователя (id, username, имя, фамилия и т.д.)
+    const user = tg.initDataUnsafe?.user;  // Данные пользователя (id, username, имя, фамилия и т.д.)
     const userInfo = document.getElementById('userInfo'); // Элемент, в который будет выведена информация о пользователе
     const entryTime = new Date();  // Время входа в приложение
 
