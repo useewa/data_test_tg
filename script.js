@@ -8,17 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const userInfo = document.getElementById('userInfo'); // Элемент, в который будет выведена информация о пользователе
     const entryTime = new Date();  // Время входа в приложение
 
-    // Проверка на наличие данных о пользователе
-    if (user) {
-        // Выводим информацию о пользователе в элемент с id "userInfo"
-        userInfo.innerHTML = `
-            <p><strong>Привет, ${user.first_name}!</strong></p>
-            <p>Ваш username: @${user.username}</p>
-            <p>Вы вошли в приложение: ${entryTime.toLocaleString()}</p>
-        `;
-    } else {
-        userInfo.innerHTML = `<p>Не удалось получить информацию о пользователе.</p>`;
-    }
+    // Выводим информацию о пользователе в элемент с id "userInfo"
+    userInfo.innerHTML = `
+        <p><strong>Привет, ${user.first_name}!</strong></p>
+        <p>Ваш username: @${user.username}</p>
+        <p>Вы вошли в приложение: ${entryTime.toLocaleString()}</p>
+    `;
 
     // Генерация календаря для текущего месяца
     const today = new Date();
@@ -33,7 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Снять выделение с других кнопок
             document.querySelectorAll('#calendar button').forEach(btn => btn.classList.remove('selected'));
             button.classList.add('selected');
-            selectedDate = `${year}-${month + 1}-${day}`;
+            selectedDate = new Date(year, month, day);
+
+            // Форматируем дату в ДД.ММ.ГГГГ
+            selectedDate = formatDate(selectedDate);
         });
         calendar.appendChild(button);
     }
@@ -44,10 +42,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tg.MainButton.onClick(() => {
         if (selectedDate) {
-            tg.sendData(JSON.stringify({ selectedDate }));  // Отправляем выбранную дату
+            tg.sendData(JSON.stringify({ selectedDate }));  // Отправляем выбранную дату в формате ДД.ММ.ГГГГ
         } else {
             alert('Пожалуйста, выберите дату!');
             tg.sendData(JSON.stringify({ selectedDate: null }));  // Отправляем, что дата не выбрана
         }
     });
+
+    // Функция для форматирования даты в ДД.ММ.ГГГГ
+    function formatDate(date) {
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Месяцы от 0 до 11, поэтому прибавляем 1
+        const year = date.getFullYear();
+        return `${day}.${month}.${year}`;
+    }
 });
