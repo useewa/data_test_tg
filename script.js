@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const calendar = document.getElementById('calendar');
     const submitBtn = document.getElementById('submitBtn');
     const tg = window.Telegram.WebApp;
+    tg.MainButton.text;
     let selectedDate = null;
 
     // Получаем данные о пользователе из Telegram WebApp
