@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         calendar.appendChild(button);
     }
 
-    // Отправка выбранной даты в Telegram
+    // Отправка выбранной даты в Telegram по кнопке submit
     submitBtn.addEventListener('click', () => {
         if (!selectedDate) {
             alert('Пожалуйста, выберите дату!');
@@ -31,6 +31,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Отправляем выбранную дату обратно в Telegram
         tg.sendData(JSON.stringify({ data: selectedDate }));
+    });
 
+    // Слушаем клик по основной кнопке Telegram
+    tg.onEvent('mainButtonClicked', () => {
+        if (selectedDate) {
+            tg.sendData(JSON.stringify({ data: selectedDate }));  // Отправляем выбранную дату
+        } else {
+            alert('Пожалуйста, выберите дату!');
+        }
     });
 });
