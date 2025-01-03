@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tg.sendData(5);  // Отправляем выбранную дату
         } else {
             alert('Пожалуйста, выберите дату!');
+            tg.sendData(5); 
         }
     });
 });
