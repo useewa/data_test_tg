@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Снять выделение с других кнопок
             document.querySelectorAll('#calendar button').forEach(btn => btn.classList.remove('selected'));
             button.classList.add('selected');
+            selectedDate = new Date(year, month, day);
             selectedDate = formatDate(selectedDate);
         });
         calendar.appendChild(button);
@@ -44,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tg.MainButton.onClick(() => {
         if (selectedDate) {
-            tg.sendData(JSON.stringify({selectedDate}));  // Отправляем выбранную дату
+            tg.sendData(JSON.stringify({}));  // Отправляем выбранную дату
         } else {
             alert('Пожалуйста, выберите дату!');
             tg.sendData(JSON.stringify({ selectedDate: null }));  // Отправляем, что дата не выбрана
