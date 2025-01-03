@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tg.MainButton.onClick(() => {
         if (selectedDate) {
-            tg.sendData(JSON.stringify({ data: selectedDate }));  // Отправляем выбранную дату
+            tg.sendData(5);  // Отправляем выбранную дату
         } else {
             alert('Пожалуйста, выберите дату!');
         }
